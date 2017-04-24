@@ -25,6 +25,17 @@ module.exports = function(env, callback) {
     });
   }
 
+  // Load custom plugins
+  if(env.config.nunjucks && env.config.nunjucks.plugindir) {
+    install_ctx = {};   // Nothing for now, but can add stuff later without
+                        // breaking APIs.
+    env.config.nunjucks.plugins.map( function (name) {
+      file = path.join(env.config.nunjucks.plugindir, name + ".js");
+      plugin = env.loadModule(env.resolvePath(file), true);
+      plugin.install(nenv, install_ctx);
+    });
+  }
+
   // Configure nunjucks environment.
   if (env.config.nunjucks && env.config.nunjucks.autoescape != null) {
     nenv.opts.autoescape = env.config.nunjucks.autoescape;
