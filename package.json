@@ -12,6 +12,8 @@
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
-    "nunjucks": "^2.1.0"
+    "async": "^2.3.0",
+    "nunjucks": "^2.1.0",
+    "underscore": "^1.8.3"
   }
 }
